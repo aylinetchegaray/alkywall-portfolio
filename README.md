@@ -24,7 +24,7 @@ Para garantizar la legibilidad y coherencia en el código escrito por distintos 
 *   **Nomenclatura de Variables y Métodos:** Se utiliza *camelCase* (Ej: `idUsuario`, `obtenerSaldo()`).
 *   **DTOs:** Los objetos de transferencia de datos no exponen la entidad real y llevan el sufijo DTO (Ej: `UsuarioRequestDTO`).
 
-## ⚙️ Instalación y Ejecución Local
+## Instalación y Ejecución Local
 1.  Clonar el repositorio: `git clone https://github.com/PsyBrainy/cfi-track-1.git`
 2.  Posicionarse en la rama de desarrollo: `git checkout develop`
 3.  Configurar la base de datos local (MySQL/XAMPP) creando una base vacía llamada `alkywall`.
