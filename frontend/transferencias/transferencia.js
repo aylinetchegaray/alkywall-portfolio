@@ -94,6 +94,7 @@ function validarFormulario(alias, cbu, monto) {
 async function extraerMensajeError(respuesta) {
     try {
         const cuerpo = await respuesta.json();
+        return cuerpo.error || cuerpo.message || 'No se pudo completar la transferencia.';
         return cuerpo.message || 'No se pudo completar la transferencia.';
     } catch {
         return 'No se pudo completar la transferencia.';
@@ -136,7 +137,15 @@ form.addEventListener('submit', async function (evento) {
             })
         });
 
-        if (!respuesta.ok) {
+        if (respuesta.status === 404) {
+            if (alias) {
+                mensaje.textContent = "No se encontró el ALIAS";
+            } else if(cbu) {
+                mensaje.textContent = "No se encontró el CBU";
+            }
+            mensaje.className = 'transferencia-mensaje transferencia-error-general';
+            return;
+        } else if (!respuesta.ok) {
             const textoError = await extraerMensajeError(respuesta);
             mensaje.textContent = textoError;
             mensaje.className = 'transferencia-mensaje transferencia-error-general';
